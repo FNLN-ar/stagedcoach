@@ -14,9 +14,6 @@
       position: relative;
       display: inline-block;
     }
-    #bg-image {
-      display: block;
-    }
     canvas {
       position: absolute;
       top: 0;
@@ -27,9 +24,7 @@
   </style>
 </head>
 <body>
-  <div id="container">
-    <img id="bg-image" src="https://i.ibb.co/dJP6W5b2/Background.png" alt="Background">
-  </div>
+  <div id="container"></div>
 
   <!-- p5.js library -->
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
@@ -37,15 +32,13 @@
   <!-- Your p5 sketch -->
   <script>
     let bubbles = [];
-    let img;
 
     function setup() {
-      let bg = document.getElementById('bg-image');
       let canvas = createCanvas(550, 100);
       canvas.parent('container');
-	  canvas.elt.style.top = '920px';
-	  canvas.elt.style.left = '45px'; 
-	  canvas.elt.style.position = 'absolute';
+      canvas.elt.style.top = '920px';
+      canvas.elt.style.left = '45px';
+      canvas.elt.style.position = 'absolute';
 
       for (let i = 0; i < 60; i++) {
         bubbles.push(new Bubble());
