@@ -7,25 +7,19 @@
     html, body {
       margin: 0;
       padding: 0;
-      display: inline-block;
-      position: relative;
-    }
-    #container {
-      position: relative;
-      display: inline-block;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
     canvas {
+      display: block;
       position: absolute;
       top: 0;
       left: 0;
-      z-index: 1;
-      pointer-events: none; /* Allows clicks to pass through */
     }
   </style>
 </head>
 <body>
-  <div id="container"></div>
-
   <!-- p5.js library -->
   <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
 
@@ -34,13 +28,8 @@
     let bubbles = [];
 
     function setup() {
-      let canvas = createCanvas(550, 100);
-      canvas.parent('container');
-      canvas.elt.style.top = '920px';
-      canvas.elt.style.left = '45px';
-      canvas.elt.style.position = 'absolute';
-
-      for (let i = 0; i < 60; i++) {
+      createCanvas(windowWidth, windowHeight);
+      for (let i = 0; i < 100; i++) {
         bubbles.push(new Bubble());
       }
     }
@@ -51,6 +40,10 @@
         b.update();
         b.display();
       }
+    }
+
+    function windowResized() {
+      resizeCanvas(windowWidth, windowHeight);
     }
 
     class Bubble {
