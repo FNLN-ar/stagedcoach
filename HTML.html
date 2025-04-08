@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Floating Bubbles</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      display: inline-block;
+      position: relative;
+    }
+    #container {
+      position: relative;
+      display: inline-block;
+    }
+    #bg-image {
+      display: block;
+    }
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      pointer-events: none; /* Allows clicks to pass through */
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <img id="bg-image" src="https://i.ibb.co/dJP6W5b2/Background.png" alt="Background">
+  </div>
+
+  <!-- p5.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script>
+
+  <!-- Your p5 sketch -->
+  <script>
+    let bubbles = [];
+    let img;
+
+    function setup() {
+      let bg = document.getElementById('bg-image');
+      let canvas = createCanvas(550, 100);
+      canvas.parent('container');
+	  canvas.elt.style.top = '920px';
+	  canvas.elt.style.left = '45px'; 
+	  canvas.elt.style.position = 'absolute';
+
+      for (let i = 0; i < 60; i++) {
+        bubbles.push(new Bubble());
+      }
+    }
+
+    function draw() {
+      background(30, 144, 255, 100); // translucent blue overlay
+      for (let b of bubbles) {
+        b.update();
+        b.display();
+      }
+    }
+
+    class Bubble {
+      constructor() {
+        this.centerX = random(width);
+        this.centerY = random(height);
+        this.angle = random(TWO_PI);
+        this.radius = random(20, 100);
+        this.size = random(5, 20);
+        this.speed = random(0.005, 0.02);
+        this.color = color(random(180, 255), random(180, 255), 255, 100);
+      }
+
+      update() {
+        this.angle += this.speed;
+        this.x = this.centerX + cos(this.angle) * this.radius;
+        this.y = this.centerY + sin(this.angle) * this.radius;
+      }
+
+      display() {
+        noStroke();
+        fill(this.color);
+        ellipse(this.x, this.y, this.size * 2);
+      }
+    }
+  </script>
+</body>
+</html>
