@@ -35,7 +35,7 @@
     }
 
     function draw() {
-      background(30, 144, 255, 100); // translucent blue overlay
+      background(64, 179, 255); // translucent blue overlay
       for (let b of bubbles) {
         b.update();
         b.display();
@@ -53,8 +53,8 @@
         this.angle = random(TWO_PI);
         this.radius = random(20, 100);
         this.size = random(5, 20);
-        this.speed = random(0.005, 0.02);
-        this.color = color(random(180, 255), random(180, 255), 255, 100);
+        this.speed = random(0.005, 0.01);
+        this.color = color(random(0, 150), random(180, 255), 255, 100);
       }
 
       update() {
