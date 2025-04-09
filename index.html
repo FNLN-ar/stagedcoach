@@ -35,7 +35,7 @@
     }
 
     function draw() {
-      background(64, 179, 255); // translucent blue overlay
+      background(30, 144, 255, 100); // translucent blue overlay
       for (let b of bubbles) {
         b.update();
         b.display();
@@ -47,15 +47,38 @@
     }
 
     class Bubble {
-      constructor() {
-        this.centerX = random(width);
-        this.centerY = random(height);
-        this.angle = random(TWO_PI);
-        this.radius = random(20, 100);
-        this.size = random(5, 20);
-        this.speed = random(0.005, 0.01);
-        this.color = color(random(0, 150), random(180, 255), 255, 100);
-      }
+  constructor() {
+    this.centerX = random(width);
+    this.centerY = random(height);
+    this.angle = random(TWO_PI);
+    this.radius = random(20, 100);
+    
+    // Only three fixed bubble sizes
+    const sizes = [10, 20, 50]; // Tiny, Medium, Big
+    this.size = random(sizes);
+
+    // Only three shades of blue
+    const colors = [
+      color(94, 191, 255, 150), // Light Blue
+      color(130, 202, 250, 150), // Very Light Blue
+      color(215, 237, 252, 150),  // White
+    ];
+    this.color = random(colors);
+
+    this.speed = random(0.005, 0.01);
+  }
+
+  update() {
+    this.angle += this.speed;
+    this.x = this.centerX + cos(this.angle) * this.radius;
+    this.y = this.centerY + sin(this.angle) * this.radius;
+  }
+
+  display() {
+    noStroke();
+    fill(this.color);
+    ellipse(this.x, this.y, this.size * 2);
+  }
 
       update() {
         this.angle += this.speed;
