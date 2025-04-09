@@ -29,7 +29,7 @@
 
     function setup() {
       createCanvas(windowWidth, windowHeight);
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 35; i++) {
         bubbles.push(new Bubble());
       }
     }
@@ -54,8 +54,8 @@
     this.radius = random(20, 100);
     
     // Only three fixed bubble sizes
-    const sizes = [10, 20, 50]; // Tiny, Medium, Big
-    this.size = random(sizes);
+    const sizes = [10, 10, 10, 20, 20, 40]; // More small & medium, fewer big
+this.size = random(sizes);
 
     // Only three shades of blue
     const colors = [
